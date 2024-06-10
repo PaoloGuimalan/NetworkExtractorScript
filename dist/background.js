@@ -12,7 +12,10 @@ chrome.webRequest.onBeforeRequest.addListener(
         payload = new TextDecoder().decode(rawBytes);
       }
       console.log('Request payload:', payload);
-      capturedRequests.push({ url: details.url, payload: payload });
+      capturedRequests.push({ url: details.url, payload: payload, method: details.method });
+    }
+    else{
+      capturedRequests.push({ url: details.url, payload: "N/A", method: details.method });
     }
   },
   { urls: ["<all_urls>"] },
